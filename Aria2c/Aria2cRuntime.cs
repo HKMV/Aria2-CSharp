@@ -1,7 +1,6 @@
 ﻿
 namespace FlyVR.Aria2
 {
-    using Log;
     using System;
     using System.Diagnostics;
     using System.IO;
@@ -179,7 +178,7 @@ namespace FlyVR.Aria2
             }
             catch (Exception ex)
             {
-                Logger.Debug(ex);
+                Console.WriteLine(ex);
             }
         }
 

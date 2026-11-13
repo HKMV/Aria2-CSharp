@@ -57,7 +57,8 @@ namespace FlyVR.Aria2
                 }
                 else
                 {
-                    throw new Exception("无法将属性转换到Aria2cGlobalStat中");
+                    // 未知字段直接忽略：aria2 新版本会给全局统计增加新项，
+                    // 不能因此抛异常（否则升级 aria2 后 GetGlobalStat 直接失败）
                 }
             }
         }
