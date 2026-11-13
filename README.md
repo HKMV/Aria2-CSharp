@@ -69,12 +69,14 @@ using (var aria2 = new Aria2c())
 }
 ```
 
+## 构建
+
+用 Visual Studio 2015 及以上（或 Build Tools 里的 MSBuild）打开 `Aria2-CSharp.sln`。解决方案只依赖本仓库自带的三个工程，没有外部源码依赖。
+
 ## 已知问题
 
-- **解决方案无法直接编译**：`Aria2c/Aria2c.csproj` 里有一行 `<ProjectReference Include="..\DebugLog\DebugLog.csproj">`，但仓库里没有 `DebugLog` 目录（`Aria2cRuntime.cs` 里也有 `using Log;`）。要编译得补上该工程，或删掉这条引用并处理 `using Log;`。
 - **`Aria2cWarpper` 是 `internal`**：外部调用请走 `Aria2c` / `Aria2cRuntime` 这两个公开入口。
 - **默认启动参数写死了端口**：`Aria2cRuntime` 的默认参数是 `--rpc-listen-port=6800`。如果改了 `Aria2Port`，需要在 `Aria2Args` 里自己带上对应端口，否则 RPC 连不上。
-- **`Aria2cGlobalStat` 遇到未知字段会抛异常**（`无法将属性转换到Aria2cGlobalStat中`）。aria2 新版本给全局统计加字段时会直接报错，建议改成忽略未知键。
 - **目标框架是 .NET Framework**（4.5.2 / 4.7.2），不是 .NET 6+，只能在 Windows 上跑。
 
 ## 第三方组件
